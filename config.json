@@ -1,0 +1,210 @@
+{
+    "jobs.mineur.xp": {
+        "STONE": 1.5,
+        "COAL_ORE": 1.6,
+        "IRON_ORE": 2.0,
+        "DIAMOND_ORE": 5.0,
+        "GOLD_ORE": 7.0,
+        "EMERALD_ORE": 10.0,
+        "LAPIS_ORE": 5.0,
+        "REDSTONE_ORE": 6.0,
+        "QUARTZ_ORE": 30.0,
+        "OBSIDIAN": 3.0
+    },
+    "jobs.mineur.recompenses": {
+        "1": [
+            "essentials:msg %player% &abite"
+        ],
+        "2": [
+            "essentials:msg %player% &bbite2"
+        ],
+        "3": [
+            "essentials:msg %player% &cbite3"
+        ],
+        "4": [
+            "essentials:msg %player% &dbite4"
+        ],
+        "5": [
+            "essentials:msg %player% &ebite5"
+        ],
+        "6": [
+            "essentials:msg %player% &fbite6"
+        ],
+        "7": [
+            "essentials:msg %player% &1bite7"
+        ],
+        "8": [
+            "essentials:msg %player% &9bite8"
+        ],       
+        "9": [
+            "essentials:msg %player% &6bite9"
+        ],       
+        "10": [
+            "essentials:msg %player% &4bite10"
+        ]
+    },
+    "jobs.bucheron.xp": {
+        "WOOD": 6.0,
+        "LOG": 7.0
+    },
+    "jobs.bucheron.recompenses": {
+        "1": [
+            "essentials:msg %player% &abiteb"
+        ],
+        "2": [
+            "essentials:msg %player% &bbite2b"
+        ],
+        "3": [
+            "essentials:msg %player% &cbite3b"
+        ],
+        "4": [
+            "essentials:msg %player% &dbite4b"
+        ],
+        "5": [
+            "essentials:msg %player% &ebite5b"
+        ],
+        "6": [
+            "essentials:msg %player% &fbite6b"
+        ],
+        "7": [
+            "essentials:msg %player% &1bite7b"
+        ],
+        "8": [
+            "essentials:msg %player% &9bite8b"
+        ],       
+        "9": [
+            "essentials:msg %player% &6bite9b"
+        ],       
+        "10": [
+            "essentials:msg %player% &4bite10b"
+        ]
+    },
+    "jobs.farmeur.xp": {
+        "CROPS": 0.5,
+        "CARROT": 0.6,
+        "CACTUS": 1.0,
+        "POTATO": 0.6,
+        "SUGAR_CANE_BLOCK": 0.8,
+        "NETHER_WARTS": 0.9
+    },
+    "jobs.farmeur.recompenses": {
+        "1": [
+            "essentials:msg %player% &abitef"
+        ],
+        "2": [
+            "essentials:msg %player% &bbite2f"
+        ],
+        "3": [
+            "essentials:msg %player% &cbite3f"
+        ],
+        "4": [
+            "essentials:msg %player% &dbite4f"
+        ],
+        "5": [
+            "essentials:msg %player% &ebite5f"
+        ],
+        "6": [
+            "essentials:msg %player% &fbite6f"
+        ],
+        "7": [
+            "essentials:msg %player% &1bite7f"
+        ],
+        "8": [
+            "essentials:msg %player% &9bite8f"
+        ],       
+        "9": [
+            "essentials:msg %player% &6bite9f"
+        ],       
+        "10": [
+            "essentials:msg %player% &4bite10f"
+        ]
+    },
+    "jobs.chasseur.xp": {
+        "ZOMBIE": 1.0,
+        "SKELETON": 1.0,
+        "PIG_ZOMBIE": 10.0,
+        "SLIME": 12.0,
+        "IRON_GOLEM": 20.0,
+        "SPIDER": 2.0,
+        "COW": 0.6,
+        "CHICKEN": 1.5,
+        "PIG": 0.6,
+        "SHEEP": 0.8,
+        "WITCH": 16.0
+    },
+    "jobs.chasseur.recompenses": {
+        "1": [
+            "essentials:msg %player% &abitec"
+        ],
+        "2": [
+            "essentials:msg %player% &bbite2c"
+        ],
+        "3": [
+            "essentials:msg %player% &cbite3c"
+        ],
+        "4": [
+            "essentials:msg %player% &dbite4c"
+        ],
+        "5": [
+            "essentials:msg %player% &ebite5c"
+        ],
+        "6": [
+            "essentials:msg %player% &fbite6c"
+        ],
+        "7": [
+            "essentials:msg %player% &1bite7c"
+        ],
+        "8": [
+            "essentials:msg %player% &9bite8c"
+        ],       
+        "9": [
+            "essentials:msg %player% &6bite9c"
+        ],       
+        "10": [
+            "essentials:msg %player% &4bite10c"
+        ]
+    },
+    "jobs.constructeur.xp": {
+        "BRICK": 5.0,
+        "STONE": 1.4,
+        "COBBLESTONE": 2.0,
+        "DIRT": 1.0,
+        "WOOD": 2.0,
+        "GLOWSTONE": 5.0,
+        "GRASS": 3.0,
+        "LOG": 4.0,
+        "OBSIDIAN": 2.0  
+    },
+    "jobs.constructeur.recompenses": {
+        "1": [
+            "essentials:msg %player% &abiteco"
+        ],
+        "2": [
+            "essentials:msg %player% &bbite2co"
+        ],
+        "3": [
+            "essentials:msg %player% &cbite3co"
+        ],
+        "4": [
+            "essentials:msg %player% &dbite4co"
+        ],
+        "5": [
+            "essentials:msg %player% &ebite5co"
+        ],
+        "6": [
+            "essentials:msg %player% &fbite6co"
+        ],
+        "7": [
+            "essentials:msg %player% &1bite7co"
+        ],
+        "8": [
+            "essentials:msg %player% &9bite8co"
+        ],       
+        "9": [
+            "essentials:msg %player% &6bite9co"
+        ],       
+        "10": [
+            "essentials:msg %player% &4bite10co"
+        ]
+    }
+}

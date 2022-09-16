@@ -1,0 +1,10 @@
+name: ConodiaJobs
+version: 1.0.0
+author: PandaGuerrier
+main: fr.pandaguerrier.conodiajob.ConodiaJobs
+commands:
+  jobs:
+    description: Permet d'ouvrir le menu principal.
+    aliases: [job, j, metier, metiers]
+
+  
