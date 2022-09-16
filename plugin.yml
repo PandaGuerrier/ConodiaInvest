@@ -1,10 +1,10 @@
-name: ConodiaJobs
+name: ConodiaInvest
 version: 1.0.0
 author: PandaGuerrier
-main: fr.pandaguerrier.conodiajob.ConodiaJobs
+main: fr.pandaguerrier.conodiainvest.ConodiaInvest
 commands:
-  jobs:
+  invest:
     description: Permet d'ouvrir le menu principal.
-    aliases: [job, j, metier, metiers]
+    aliases: [i, invests]
 
   
