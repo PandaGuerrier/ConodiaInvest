@@ -1,22 +1,28 @@
 package fr.pandaguerrier.conodiainvest.utils;
 
 import fr.pandaguerrier.conodiainvest.ConodiaInvest;
+import net.minecraft.server.v1_8_R3.IChatBaseComponent;
+import net.minecraft.server.v1_8_R3.PacketPlayOutTitle;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import java.text.DecimalFormat;
 import java.util.Arrays;
 import java.util.HashMap;
 
 public class Utils {
 
+    private static final DecimalFormat df = new DecimalFormat("#.#");
 
     public static boolean playerZone(Player player) {
-        Location coord1 = new Location(player.getWorld(), 3962, 73, 4986);
-        Location coord2 = new Location(player.getWorld(), 3965, 78, 4988);
+        Location coord2 = new Location(player.getWorld(), 26, 195, 33);
+        Location coord1 = new Location(player.getWorld(), 12, 84, 17);
 
         if ((player.getLocation().getBlockX() > coord1.getBlockX()) && (player.getLocation().getBlockX() < coord2.getBlockX())) {
             if ((player.getLocation().getBlockY() > coord1.getBlockY()) && (player.getLocation().getBlockY() < coord2.getBlockY())) {
@@ -48,30 +54,29 @@ public class Utils {
 
                             Bukkit.getScheduler().runTask(ConodiaInvest.getInstance, () -> Bukkit.getServer().dispatchCommand(Bukkit.getServer().getConsoleSender(), "eco give " + player.getName() + " " + hash.get("money")));
                         }
-                        // send a title and subtitle to the player
+
+                        Progress progress = new Progress(currentTime, time);
+                        sendTitle(player, "§9" + df.format(progress.getPercentage() * 100) + "%", progress.progressBar);
 
                     }
                 }
             }
         }, 0L, 20L);
     }
-    /*
-    public static void progress(Player player, String job, double current) {
-        HashMap obj = (HashMap) ConodiaInvest.instance.getHashJobs().get(player.getName());
 
-        DecimalFormat df = new DecimalFormat("#.#");
-        int max = ((int) obj.get("lvl" + job) + 1) * 2500;
+    public static void sendTitle(Player player, String title, String subtitle) {
+        IChatBaseComponent chatTitle = IChatBaseComponent.ChatSerializer.a("{\"text\": \"" + title + "\",color:" + ChatColor.GOLD.name().toLowerCase() + "}");
+        IChatBaseComponent chatSubTitle = IChatBaseComponent.ChatSerializer.a("{\"text\": \"" + subtitle + "\",color:" + ChatColor.GOLD.name().toLowerCase() + "}");
 
-        double percentage =  current / max;
-        int progress = (int) Math.round((20 * percentage));
-        int emptyProgress = 20 - progress;
-        // Idée des signes a utiliser au cas où ça me plaît pas :D --> ┃┃┃┃┃┃┃┃▊▊ ▋ ▍▍ ▎▎ ▉▉ ▏▏ ●●
-        String progressText = StringUtils.repeat("▍", progress);
-        String emptyProgressText = StringUtils.repeat("▍", emptyProgress);
+        PacketPlayOutTitle titlePacket = new PacketPlayOutTitle(PacketPlayOutTitle.EnumTitleAction.TITLE, chatTitle);
+        PacketPlayOutTitle subtitlePacket = new PacketPlayOutTitle(PacketPlayOutTitle.EnumTitleAction.SUBTITLE, chatSubTitle);
+        PacketPlayOutTitle length = new PacketPlayOutTitle(5, 20, 5);
 
 
-        //return "§b" + progressText + "§8" + emptyProgressText + " §9(" + df.format(percentage * 100) + "%)";
-    }*/
+        ((CraftPlayer) player).getHandle().playerConnection.sendPacket(titlePacket);
+        ((CraftPlayer) player).getHandle().playerConnection.sendPacket(subtitlePacket);
+        ((CraftPlayer) player).getHandle().playerConnection.sendPacket(length);
+    }
 
     public static ItemStack createGuiItem(Material material, String name, int data, String... lore) {
         ItemStack item = new ItemStack(material, 1, (short) data);

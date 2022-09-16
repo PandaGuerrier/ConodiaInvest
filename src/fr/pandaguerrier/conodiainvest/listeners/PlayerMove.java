@@ -16,11 +16,10 @@ public class PlayerMove implements Listener {
 	@EventHandler
     public void onMove(PlayerMoveEvent event) {
          Player player = event.getPlayer();
-         System.out.println("test");
 
         if(Utils.playerZone(player)) {
-            if(hashInvest.get(player) != null) {
-
+            if(hashInvest.get(player) == null) {
+                Utils.sendTitle(player, "§4⚠ §cAucun investissement §4⚠", "§bVous pouvez en faire un en faisant §9/invest");
             }
         }
     }

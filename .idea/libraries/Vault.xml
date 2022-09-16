@@ -1,7 +1,7 @@
 <component name="libraryTable">
-  <library name="ConodiaJobs">
+  <library name="Vault">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/out/artifacts/ConodiaJobs/ConodiaJobs.jar!/" />
+      <root url="jar://$USER_HOME$/Desktop/dependences/Vault.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

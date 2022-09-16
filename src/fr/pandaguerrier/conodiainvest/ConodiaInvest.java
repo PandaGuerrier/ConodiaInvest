@@ -1,16 +1,23 @@
 package fr.pandaguerrier.conodiainvest;
 
+import fr.pandaguerrier.conodiainvest.utils.Utils;
 import fr.pandaguerrier.conodiainvest.utils.registers.Commands;
 import fr.pandaguerrier.conodiainvest.utils.registers.Events;
+import net.milkbowl.vault.chat.Chat;
+import net.milkbowl.vault.economy.Economy;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
+import org.bukkit.permissions.Permission;
+import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.HashMap;
 
 public class ConodiaInvest extends JavaPlugin {
     public static ConodiaInvest getInstance;
-
+    private Economy econ;
+    private Permission perms;
+    private Chat chat;
     // Player: joueur, String: time
     private final HashMap<Player, Object> hashInvest = new HashMap<>();
 
@@ -19,29 +26,17 @@ public class ConodiaInvest extends JavaPlugin {
 
         Commands.load();
         Events.load();
+
+        Utils.investProgress();
+
+        if (!setupEconomy()) {
+            this.getLogger().severe("Disabled due to no Vault dependency found!");
+            Bukkit.getPluginManager().disablePlugin(this);
+            return;
+        }
+
+        this.setupChat();
         System.out.println("\n \n-------------------------\n \nLe ConodiaInvest est connecté !\n \n-------------------------\n \n");
-
-        this.getServer().getScheduler().scheduleSyncRepeatingTask(this, new Runnable() {
-            @Override
-            public void run() {
-                for (Player player : hashInvest.keySet()) {
-                    HashMap hash = (HashMap) hashInvest.get(player);
-                    int currentTime = (int) hash.get("currentTime");
-                    int time = (int) hash.get("time");
-
-                    if (currentTime < time) {
-                        currentTime++;
-                        hash.put("currentTime", currentTime);
-                        hashInvest.put(player, hash);
-                    } else {
-                        hashInvest.remove(player);
-                        player.sendMessage("§bConodiaInvest §7» §aVotre investissement est terminé !");
-
-                        Bukkit.getScheduler().runTask(ConodiaInvest.getInstance, () -> Bukkit.getServer().dispatchCommand(Bukkit.getServer().getConsoleSender(), "eco give " + player.getName() + " " + hash.get("money")));
-                    }
-                }
-            }
-        }, 0L, 20L);
     }
 
     public void onDisable() {
@@ -51,4 +46,35 @@ public class ConodiaInvest extends JavaPlugin {
     public HashMap<Player, Object> getHashInvest() {
         return hashInvest;
     }
+
+    private boolean setupEconomy() {
+        if (Bukkit.getPluginManager().getPlugin("Vault") == null) {
+            return false;
+        }
+
+        RegisteredServiceProvider<Economy> rsp = getServer().getServicesManager().getRegistration(Economy.class);
+        if (rsp == null) {
+            return false;
+        }
+        econ = rsp.getProvider();
+        return econ != null;
+    }
+
+    private boolean setupChat() {
+        RegisteredServiceProvider<Chat> rsp = getServer().getServicesManager().getRegistration(Chat.class);
+        chat = rsp.getProvider();
+        return chat != null;
+    }
+    public Economy getEconomy() {
+        return econ;
+    }
+
+    public Permission getPermissions() {
+        return perms;
+    }
+
+    public Chat getChat() {
+        return chat;
+    }
+
 }
