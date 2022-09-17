@@ -1,6 +1,7 @@
 package fr.pandaguerrier.conodiainvest.utils;
 
 import fr.pandaguerrier.conodiainvest.ConodiaInvest;
+import fr.pandaguerrier.conodiainvest.events.InvestStop;
 import net.minecraft.server.v1_8_R3.IChatBaseComponent;
 import net.minecraft.server.v1_8_R3.PacketPlayOutTitle;
 import org.bukkit.Bukkit;
@@ -49,10 +50,8 @@ public class Utils {
                             hash.put("currentTime", currentTime);
                             ConodiaInvest.getInstance.getHashInvest().put(player, hash);
                         } else {
-                            ConodiaInvest.getInstance.getHashInvest().remove(player);
-                            player.sendMessage("§bConodiaInvest §7» §aVotre investissement est terminé !");
-
-                            Bukkit.getScheduler().runTask(ConodiaInvest.getInstance, () -> Bukkit.getServer().dispatchCommand(Bukkit.getServer().getConsoleSender(), "eco give " + player.getName() + " " + hash.get("money")));
+                            InvestStop event = new InvestStop(player, (int) hash.get("money"));
+                            Bukkit.getPluginManager().callEvent(event);
                         }
 
                         Progress progress = new Progress(currentTime, time);

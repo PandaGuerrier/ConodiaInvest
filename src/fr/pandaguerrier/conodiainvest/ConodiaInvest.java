@@ -1,16 +1,22 @@
 package fr.pandaguerrier.conodiainvest;
 
+import fr.pandaguerrier.conodiainvest.utils.SaveData;
 import fr.pandaguerrier.conodiainvest.utils.Utils;
 import fr.pandaguerrier.conodiainvest.utils.registers.Commands;
 import fr.pandaguerrier.conodiainvest.utils.registers.Events;
 import net.milkbowl.vault.chat.Chat;
 import net.milkbowl.vault.economy.Economy;
 import org.bukkit.Bukkit;
+import org.bukkit.configuration.InvalidConfigurationException;
+import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.permissions.Permission;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 
 public class ConodiaInvest extends JavaPlugin {
@@ -21,6 +27,9 @@ public class ConodiaInvest extends JavaPlugin {
     // Player: joueur, String: time
     private final HashMap<Player, Object> hashInvest = new HashMap<>();
 
+    private File customConfigFile;
+    private FileConfiguration customConfig;
+
     public void onEnable() {
         getInstance = this;
 
@@ -29,6 +38,10 @@ public class ConodiaInvest extends JavaPlugin {
 
         Utils.investProgress();
 
+        SaveData.save();
+        createCustomConfig();
+        // VAULT SETUP
+
         if (!setupEconomy()) {
             this.getLogger().severe("Disabled due to no Vault dependency found!");
             Bukkit.getPluginManager().disablePlugin(this);
@@ -36,6 +49,7 @@ public class ConodiaInvest extends JavaPlugin {
         }
 
         this.setupChat();
+
         System.out.println("\n \n-------------------------\n \nLe ConodiaInvest est connecté !\n \n-------------------------\n \n");
     }
 
@@ -65,6 +79,41 @@ public class ConodiaInvest extends JavaPlugin {
         chat = rsp.getProvider();
         return chat != null;
     }
+
+    public FileConfiguration getCustomConfig() {
+        return this.customConfig;
+    }
+
+    public void saveCustomConfig() {
+        try {
+            this.customConfig.save(this.customConfigFile);
+        } catch (IOException var2) {
+            var2.printStackTrace();
+        }
+
+    }
+
+    private void createCustomConfig() {
+        customConfigFile = new File(getDataFolder(), "data.yml");
+        if (!customConfigFile.exists()) {
+            customConfigFile.getParentFile().mkdirs();
+           // new File(getDataFolder().getAbsolutePath() +  "/data.yml");
+
+            saveResource("data.yml", false);
+        }
+
+        customConfig = new YamlConfiguration();
+        try {
+            customConfig.load(customConfigFile);
+        } catch (IOException | InvalidConfigurationException e) {
+            e.printStackTrace();
+        }
+        /* User Edit:
+            Instead of the above Try/Catch, you can also use
+            YamlConfiguration.loadConfiguration(customConfigFile)
+        */
+    }
+
     public Economy getEconomy() {
         return econ;
     }
