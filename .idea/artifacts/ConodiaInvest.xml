@@ -4,6 +4,7 @@
     <root id="archive" name="ConodiaInvest.jar">
       <element id="module-output" name="ConodiaInvest" />
       <element id="file-copy" path="$PROJECT_DIR$/plugin.yml" />
+      <element id="file-copy" path="$PROJECT_DIR$/data.yml" />
     </root>
   </artifact>
 </component>
