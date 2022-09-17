@@ -9,9 +9,9 @@ import org.bukkit.inventory.Inventory;
 
 import java.util.HashMap;
 
-public class GuiInfo {
+public class PrincipalGui {
     private final Player player;
-    public GuiInfo(Player player) {
+    public PrincipalGui(Player player) {
         this.player = player;
     }
 
@@ -30,7 +30,7 @@ public class GuiInfo {
         inv.setItem(37, Utils.createGuiItem(Material.STAINED_GLASS_PANE, "", 3, ""));
         inv.setItem(35, Utils.createGuiItem(Material.STAINED_GLASS_PANE, "", 3, ""));
         inv.setItem(43, Utils.createGuiItem(Material.STAINED_GLASS_PANE, "", 3, ""));
-        inv.setItem(44, Utils.createGuiItem(Material.INK_SACK, "§cRetour", 1, ""));
+        inv.setItem(44, Utils.createGuiItem(Material.STAINED_GLASS_PANE, "", 3, ""));
 
         if(ConodiaInvest.getInstance.getHashInvest().get(player) == null) {
             inv.setItem(20, Utils.createGuiItem(Material.GOLD_NUGGET, "§e10k", 0, "§8§m-------------------", " ", "§bCoût: §aFREE", "§bTemps: §930min", " ", "§8§m-------------------"));
