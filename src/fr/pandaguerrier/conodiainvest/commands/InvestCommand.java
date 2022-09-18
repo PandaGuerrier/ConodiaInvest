@@ -1,22 +1,21 @@
-package fr.pandaguerrier.conodiainvest.inventories;
+package fr.pandaguerrier.conodiainvest.commands;
 
 import fr.pandaguerrier.conodiainvest.ConodiaInvest;
 import fr.pandaguerrier.conodiainvest.utils.Utils;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandExecutor;
+import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 
 import java.util.HashMap;
 
-public class PrincipalGui {
-    private final Player player;
-    public PrincipalGui(Player player) {
-        this.player = player;
-    }
+public class InvestCommand implements CommandExecutor {
+    public boolean onCommand( CommandSender sender,  Command cmd,  String msg,  String[] args) {
+        Player player = (Player)sender;
 
-    public void open() {
-        
         Inventory inv = Bukkit.createInventory(null, 45, "§9➜ §bInvest");
 
         inv.setItem(0, Utils.createGuiItem(Material.STAINED_GLASS_PANE, "", 3, ""));
@@ -45,7 +44,9 @@ public class PrincipalGui {
             inv.setItem(23, Utils.createGuiItem(Material.BARRIER, "§cCliquez ici pour annuler (Vous recevrez uniquement 75% de votre argent investie).", 0, " "));
         }
 
-        this.player.openInventory(inv);
+        player.openInventory(inv);
+
+        return true;
     }
 
     private String intToDate(int time) {

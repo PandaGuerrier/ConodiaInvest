@@ -108,10 +108,6 @@ public class ConodiaInvest extends JavaPlugin {
         } catch (IOException | InvalidConfigurationException e) {
             e.printStackTrace();
         }
-        /* User Edit:
-            Instead of the above Try/Catch, you can also use
-            YamlConfiguration.loadConfiguration(customConfigFile)
-        */
     }
 
     public Economy getEconomy() {

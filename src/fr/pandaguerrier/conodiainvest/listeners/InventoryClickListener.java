@@ -12,7 +12,7 @@ import org.json.simple.JSONObject;
 
 import java.util.HashMap;
 
-public class InventoryClick implements Listener {
+public class InventoryClickListener implements Listener {
     ConodiaInvest plugin = ConodiaInvest.getInstance;
     @SuppressWarnings({"unused"})
     @EventHandler

@@ -1,19 +1,14 @@
 package fr.pandaguerrier.conodiainvest.listeners;
 
 import fr.pandaguerrier.conodiainvest.ConodiaInvest;
-import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
-import org.bukkit.inventory.Inventory;
-import org.bukkit.inventory.ItemStack;
-import org.json.simple.JSONObject;
 
 import java.util.HashMap;
 
-public class Player implements Listener {
+public class PlayerListener implements Listener {
     ConodiaInvest plugin = ConodiaInvest.getInstance;
     @SuppressWarnings({"unused"})
     @EventHandler
