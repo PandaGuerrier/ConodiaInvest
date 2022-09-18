@@ -6,8 +6,8 @@ public class Progress {
     double current;
     int max;
 
-    String progressBar;
-    double percentage;
+    private final String progressBar;
+    private final double percentage;
 
     public Progress(double current, int max) {
         this.current = current;

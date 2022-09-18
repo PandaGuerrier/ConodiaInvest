@@ -55,8 +55,7 @@ public class Utils {
                         }
 
                         Progress progress = new Progress(currentTime, time);
-                        sendTitle(player, "§9" + df.format(progress.getPercentage() * 100) + "%", progress.progressBar);
-
+                        sendTitle(player, "§9" + df.format(progress.getPercentage() * 100) + "%", progress.getProgressBar());
                     }
                 }
             }
